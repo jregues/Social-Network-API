@@ -1,5 +1,5 @@
-const { Schema, Types } = require("mongoose");
-const { Thoughts } = require("./thoughts");
+const { Schema, model, Types } = require("mongoose");
+const { Thoughts } = require("./Thought.js");
 
 const userSchema = new Schema(
   {
@@ -13,11 +13,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      validate: ["Please fill a valid email address"],
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please fill a valid email address",
-      ],
+      validate: {
+        validator: function (v) {
+          return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+        },
+        message: "Please fill a valid email address",
+      },
     },
     thoughts: [
         {

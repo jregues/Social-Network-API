@@ -1,7 +1,6 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 
 
-// Schema to create Student model
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -11,19 +10,17 @@ const reactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: true,
-      max_length: 280,
+      maxlength: 280, // it should be 'maxlength' not 'max_length'
     },
     username: {
       type: String,
       required: true,
-      
     },
     createdAt: {
         type: Date,
-        value: Date.now,
+        default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
-    
   },
   {
     toJSON: {
@@ -32,6 +29,6 @@ const reactionSchema = new Schema(
   }
 );
 
-const Reaction = model('reaction', reactionSchema);
 
-module.exports = Reaction;
+
+module.exports = reactionSchema;
