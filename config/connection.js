@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+const { connect, connection } = require('mongoose');
 
-mongoose.connect("mongodb://127.0.0.1/boiler")
+const connectionString = 'mongodb://127.0.0.1:27017/socialDB';
 
+connect(connectionString);
 
-module.exports = mongoose.connection;
+module.exports = connection;

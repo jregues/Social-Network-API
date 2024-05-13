@@ -7,7 +7,7 @@ const db = require("./config/connection.js");
 
 app.use(express.json());
 
-app.use("/api", routes);
+app.use("/", routes);
 
 db.once("open", () => {
   app.listen(PORT, () => {
